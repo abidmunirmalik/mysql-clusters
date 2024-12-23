@@ -1,15 +1,13 @@
 ## GALERA CLUSTER SETUP
 
 ### GALERA 4 REPLICATION LIBRARY
+Download Site: https://galeracluster.com/downloads/
+Version: Galera 4 Replication Library, Version 26.4.21 
+OS: Red Hat Enterprise Linux 9
 ```
-1. Create New Project called `DATABASES`
-2. Create `Droplets`
-3. Region: San Francisco (please choose that is closer to you)
-4. Choose Image: CentOS 9
-5. Droplet Type: Basic
-6. CPU Options: Regular(SSD) 1GB/1CPU
-7. Authentication Method - SSH Key - New SSH Key `Key-Name: on-prem`
-8. Quantity: 2
-9. Droplet-1 Name: primary & Droplet-2 Name: replica
-10. Create
+mkdir -p /tmp/galera
+cd /tmp/galera
+wget https://releases.galeracluster.com/galera-4/redhat/9/x86_64/galera-4-26.4.21-1.el9.x86_64.rpm
+yum localinstall galera-4-26.4.21-1.el9.x86_64.rpm
+rpm -ql galera-4-26.4.21-1.el9.x86_64
 ```
