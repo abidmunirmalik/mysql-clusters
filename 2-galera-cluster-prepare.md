@@ -17,3 +17,9 @@ init 6
 10.124.0.4 g2.gcluster.local g2
 10.124.0.3 g3.gcluster.local g3
 ```
+
+* Verify ping hosts
+```
+ping g2.gcluster.local
+ping g3
+```
