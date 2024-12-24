@@ -67,5 +67,16 @@ mysql
 systemctl stop mysqld.service (On Node2)
 systemctl stop mysqld.service (On Node1)
 cat /var/lib/mysql/grastate.dat (on both nodes)
+vi /var/lib/mysql/grastate.dat (on Node1)
+  #wsrep_cluster_address     = "gcomm://g1.gcluster.local,g2.gcluster.local"
+  wsrep_cluster_address     = "gcomm://"
+systemctl start mysqld.service
+mysql
+> SHOW GLOBAL STATUS LIKE 'wsrep_last%';
+> SHOW GLOBAL STATUS LIKE 'wsrep_cluster%';
+systemctl start mysqld.service (On Node2)
+vi /var/lib/mysql/grastate.dat (on Node1)
+  wsrep_cluster_address     = "gcomm://g1.gcluster.local,g2.gcluster.local"
+systemctl restart mysqld
 ```
 * Start the node first that has `safe_to_bootstrap: 1`.
