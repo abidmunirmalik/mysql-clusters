@@ -58,6 +58,14 @@ ls /usr/bin/mysql*
 ```
  
 
-### SPLIT-BRAIN SIMULATION
-* The Split-Brain simulation can be performed on two-node cluster
-* shutdown 
+### RESTARTING GALERA CLUSTER
+* When all the members of the galera cluster are down:
+```
+cat /var/lib/mysql/grastate.dat 
+mysql
+> SHOW GLOBAL STATUS LIKE 'wsrep_last%';
+systemctl stop mysqld.service (On Node2)
+systemctl stop mysqld.service (On Node1)
+cat /var/lib/mysql/grastate.dat (on both nodes)
+```
+* Start the node first that has `safe_to_bootstrap: 1`.
