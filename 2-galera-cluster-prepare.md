@@ -7,7 +7,11 @@
 vi /etc/selinux/config
   SELINUX=disabled
 grubby --update-kernel ALL --args selinux=0
-init 6
+```
+
+* Change the hostname
+```
+hostnamectl hostname g1
 ```
 
 * Edit /etc/hosts file
@@ -16,10 +20,12 @@ init 6
 10.124.0.2 g1.gcluster.local g1
 10.124.0.4 g2.gcluster.local g2
 10.124.0.3 g3.gcluster.local g3
+
+init 6
 ```
 
 * Verify ping hosts
 ```
-ping g2.gcluster.local
+ping -c 3 g2.gcluster.local
 ping g3
 ```
