@@ -1,5 +1,5 @@
 ## GALERA CLUSTER SYSTEM TABLES
-
+Reference: https://galeracluster.com/library/documentation/system-tables.html
 
 ### CURRENT STATUS OF GALERA CLUSTER
 ```
@@ -43,8 +43,20 @@ select * from mysql.wsrep_cluster_members;
 
 
 ### WSREP_STREAMING_LOG System Table
+Reference: https://galeracluster.com/library/documentation/using-sr.html
 * New feature introduced in Galera cluster 4.
 * Used for **Streaming Replication** - Only active if you **enable** the ongoing streaming transactions.
 * Under normal operation, the node performs all replication and certification events when a transaction commits.
 * Used for large transactions where node breaks the transaction into fragments, then certifies and replicates them on the replicas while the transaction is still in progress
 * Streaming Replication allows the node to process transaction write-sets greater than 2Gb.
+* To enable streaming replication ast SESSION level:
+```
+START TRANSACTION;
+SET wsrep_trx_fragment_unit='statements';
+SET wsrep_trx_fragment_size=1;
+```
+* Once done, disable the streaming by issuing the following:
+```
+SET SESSION wsrep_trx_fragment_size=0;
+COMMIT;
+```
