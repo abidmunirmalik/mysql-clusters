@@ -84,3 +84,11 @@ cat /etc/hosts
 
 ping -c 3 gcn3.gclluster.local && ping -c 3 gcn2
 ```
+
+### DISABLE SELINUX & REBOOT
+```
+vi /etc/selinux/config
+  SELINUX=disabled
+grubby --update-kernel ALL --args selinux=0
+init 6
+```
