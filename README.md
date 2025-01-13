@@ -1,6 +1,4 @@
-## mysql-clusters
-
-DigitalOcean $200 Credit for 60 Days: https://m.do.co/c/8722350423f7
+## MYSQL-CLUSTERS
 
 ### Galera Cluster
 * Galera Cluster consists of two parts:
