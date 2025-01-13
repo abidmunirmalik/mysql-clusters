@@ -59,10 +59,11 @@ Sec Group: galera-cluster-sg
 Storage  : 10 GB (gp3)
 ```
 
-### CONNECTION TO EC2
+### CONNECT TO EC2
 ```
-ssh -i ~/.ssh/galera-cluster.pem ec2-user@<pubic_ip>
+ssh -i ~/.ssh/galera-cluster.pem ec2-user@<pubic_ip_gcn1>
 sudo hostnamectl hostname gcn1 && sudo hostnamectl status
+ip address
 
 vi /etc/hosts
 # Galera Cluster Setup
@@ -72,6 +73,14 @@ vi /etc/hosts
 ### CREATE TWO MORE RHEL VMs
 ```
 Name    : gcn2 & gcn3
+ssh -i ~/.ssh/galera-cluster.pem ec2-user@<pubic_ip_gcnx>
+sudo hostnamectl hostname gcn2 && sudo hostnamectl status
 
 cat /etc/hosts
+# Galera Cluster Setup
+172.31.21.160 gcn1.gcluster.local gcn1
+172.31.26.227 gcn2.gcluster.local gcn2
+172.31.22.24  gcn3.gcluster.local gcn3
+
+ping -c 3 gcn3.gclluster.local && ping -c 3 gcn2
 ```
