@@ -17,12 +17,14 @@ systemctl stop mysqld.service
 ```
 * On one of the remaining nodes:
 ```
-> INSERT INTO finance.employees(first_name) VALUES('John Doe');
+> INSERT INTO finance.employees values();
 > select * from finance.employees; from another node
 ```
 * Open two tabs on the shutdown node
 * On one tab run `systemctl start mysqld.service`
 * On the other tab observe the `tail -f /var/log/mysqld.log`
+* Search for `Processing event queue`, `Shifting`
+
 
 
 ### REMOVING NODE FROM GALERA CLUSTER
