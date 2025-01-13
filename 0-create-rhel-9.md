@@ -44,3 +44,34 @@ Inbound rules:
      Source  : galera-cluster-sg
      Tag     : ping
 ```
+
+### CREATE EC2 
+```
+Name     : gcn1
+OS       : Red Hat Enterprise Linux 9
+AMI      : ami-0c7af5fe939f2677f
+Arch     : 64-bit (x86)
+Region   : N. Virginia
+Instance : t2.micro
+Key Pair : galera-cluster
+Public IP: Enable
+Sec Group: galera-cluster-sg
+Storage  : 10 GB (gp3)
+```
+
+### CONNECTION TO EC2
+```
+ssh -i ~/.ssh/galera-cluster.pem ec2-user@<pubic_ip>
+sudo hostnamectl hostname gcn1 && sudo hostnamectl status
+
+vi /etc/hosts
+# Galera Cluster Setup
+172.31.21.160 gcn1.gcluster.local gcn1
+```
+
+### CREATE TWO MORE RHEL VMs
+```
+Name    : gcn2 & gcn3
+
+cat /etc/hosts
+```
