@@ -4,6 +4,12 @@
 
 * Edit the my.cnf file
 ```
+sudo --login
+ls /etc/my*
+ls /etc/my.cnf.d
+
+vi /etc/my.cnf
+
 [mysqld]
 datadir=/var/lib/mysql
 socket=/var/lib/mysql/mysql.sock
@@ -33,6 +39,8 @@ mysql
 ```
 systemctl stop mysqld.service
 
+mkdir -p /etc/mysql/conf.d
+
 vi /etc/my.cnf
  !includedir /etc/mysql/conf.d/
 
@@ -59,20 +67,21 @@ vi /etc/mysql/conf.d/galera-cluster.cnf
  wsrep_provider            = /usr/lib64/galera-4/libgalera_smm.so
  wsrep_cluster_name        = "gcluster"
  wsrep_cluster_address     = "gcomm://"
- #wsrep_cluster_address     = "gcomm://g1.gcluster.local,g2.gcluster.local,g3.gcluster.local"
  wsrep_sst_method          = rsync
  wsrep_node_address        = "172.31.46.28"
- wsrep_node_name           = "g1.gcluster.local"
+ wsrep_node_name           = "gcn1.gcluster.local"
 ```
 
 * Attempt to Bootstrap first member of the cluster
 ```
 systemctl start mysqld@bootstrap.service
-systemctl status mysqld.service
+systemctl status mysqld@bootstrap.service
 ```
 
 * Start MySQL service on 2nd & 3rd members of the cluster
 ```
+modify galera-cluster.cnf file
+wsrep_cluster_address     = "gcomm://gcn1.gcluster.local,gcn2.gcluster.local,gcn3.gcluster.local"
 systemctl start mysqld.service
 mysql
 > show status like 'wsrep_cluster%';
@@ -88,6 +97,7 @@ mysql
 > CREATE DATABASE finance;
 > USE finance;
 > CREATE TABLE employees(ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT);
+> insert into employees values();
 > exit;
 ```
 
