@@ -1,4 +1,4 @@
-## TESTING GALERA CLUSTER
+## WRITE SET REPLICATION IN GALERA CLUSTER
 
 
 ### CURRENT STATUS OF GALERA CLUSTER
@@ -9,8 +9,9 @@
   * wsrep_local_state_comment
   * wsrep_cluster_size
   * wsrep_ready
+
  
-### SIMULATE THE FAILURE
+### WATCH THE WRITE SET REPLICATION
 * On any of the node, shutdown `mysqld.service`:
 ```
 systemctl stop mysqld.service
