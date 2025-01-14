@@ -7,12 +7,13 @@
 
 **OS:** Red Hat Enterprise Linux 9
 ```
-ssh -i ~/.ssh/galera root@164.92.80.80
+ssh -i ~/.ssh/galera-cluster.pem ec2-user@<public_ip_node1>
 sudo -i
 mkdir -p /tmp/galera-cluster && cd /tmp/galera-cluster
 yum install -y wget
 wget https://releases.galeracluster.com/galera-4/redhat/9/x86_64/galera-4-26.4.21-1.el9.x86_64.rpm
 yum localinstall -y galera-4-26.4.21-1.el9.x86_64.rpm
+
 rpm -qa | grep galera
 rpm -ql galera-4-26.4.21-1.el9.x86_64
 ```
