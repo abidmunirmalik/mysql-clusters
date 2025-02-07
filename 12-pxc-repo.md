@@ -1,6 +1,12 @@
 ## SETTING UP PERCONA REPOSITORY
 
-### ON ALL CLUSTER NODES
+### CLEANUP REPOS - ON ALL CLUSTER NODES
+```
+rm -f /etc/yum.repos.d/MariaDB.repo
+yum clean all
+```
+
+### SETUP PERCONA REPO - ON ALL CLUSTER NODES
 ```
 yum install https://repo.percona.com/yum/percona-release-latest.noarch.rpm
 
