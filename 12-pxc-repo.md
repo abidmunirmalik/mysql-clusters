@@ -9,4 +9,6 @@ perona-release --help
 
 percona-release setup pxc-80
 percona-release show
+
+yum search percona-xtradb-cluster
 ```
