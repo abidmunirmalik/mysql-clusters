@@ -13,7 +13,6 @@ vi /etc/my.cnf
 !includedir /etc/my.cnf.d
 
 cp /etc/my.cnf.original /etc/my.cnf.d/server.cnf
-cp /etc/my.cnf.original /etc/my.cnf.d/cluster.cnf
 
 vi /etc/my.cnf.d/server.cnf
 [mysqld]
