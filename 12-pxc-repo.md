@@ -10,6 +10,8 @@ yum clean all
 ```
 yum install https://repo.percona.com/yum/percona-release-latest.noarch.rpm
 
+ls /etc/yum.repos.d/
+
 percona-release show
 perona-release --help
 
