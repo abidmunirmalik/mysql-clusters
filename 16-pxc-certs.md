@@ -19,12 +19,14 @@ chmod 600 ~/.ssh/cluster.pem
 ### COPY CERTIFICATE FILES TO ALL OTHER NODES
 ```
 scp -i ~/.ssh/galera-cluster.pem /var/lib/mysql/server-key.pem ec2-user@pxc2:/tmp/server-key.pem
-scp -i ~/.ssh/galera-cluster.pem /var/lib/mysql/ca.pem ec2-user@pxc2:/tmp/ca.pem
 scp -i ~/.ssh/galera-cluster.pem /var/lib/mysql/server-cert.pem ec2-user@pxc2:/tmp/server-cert.pem
+scp -i ~/.ssh/galera-cluster.pem /var/lib/mysql/ca.pem ec2-user@pxc2:/tmp/ca.pem
+
 
 scp -i ~/.ssh/galera-cluster.pem /var/lib/mysql/server-key.pem ec2-user@pxc3:/tmp/server-key.pem
-scp -i ~/.ssh/galera-cluster.pem /var/lib/mysql/ca.pem ec2-user@pxc3:/tmp/ca.pem
 scp -i ~/.ssh/galera-cluster.pem /var/lib/mysql/server-cert.pem ec2-user@pxc3:/tmp/server-cert.pem
+scp -i ~/.ssh/galera-cluster.pem /var/lib/mysql/ca.pem ec2-user@pxc3:/tmp/ca.pem
+
 ```
 
 ### REPLACE CERTIFICATE FILES ON NODE 2 & 3
