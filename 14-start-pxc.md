@@ -7,9 +7,13 @@ less /etc/my.cnf
 
 cp /etc/my.cnf /etc/my.cnf.original
 
-/etc/my.cnf
+rm -rf /etc/mysql
+
+vi /etc/my.cnf
 !includedir /etc/my.cnf.d
 
+cp /etc/my.cnf.original /etc/my.cnf.d/server.cnf
+cp /etc/my.cnf.original /etc/my.cnf.d/server.cnf
 
 vi /etc/my.cnf.d/server.cnf
 [mysqld]
@@ -21,7 +25,7 @@ pid-file                   = /var/run/mysqld/mysqld.pid
 binlog_expire_logs_seconds = 604800
 ```
 
-### START PXC SERVER
+### START PXC MYSQL SERVER
 ```
 systemctl start mysqld.service
 systemctl status mysqld.service
