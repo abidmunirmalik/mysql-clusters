@@ -28,13 +28,11 @@ wsrep_log_conflicts
 vi /etc/my.cnf.d/ssl.cnf
 
 [mysqld]
-wsrep_provider_options="socket.ssl_key=server-key.pem;socket.ssl_cert=server-cert.pem;socket.ssl_ca=ca.pem"
+ssl-ca   = /var/lib/mysql/ca.pem
+ssl-cert = /var/lib/mysql/server-cert.pem
+ssl-key  = /var/lib/mysql/server-key.pem
 
-[sst]
-encrypt  = 4
-ssl-key  = server-key.pem
-ssl-ca   = ca.pem
-ssl-cert = server-cert.pem
+wsrep_provider_options="socket.ssl_key=server-key.pem;socket.ssl_cert=server-cert.pem;socket.ssl_ca=ca.pem"
 ```
 
 
