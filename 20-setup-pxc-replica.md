@@ -72,13 +72,14 @@ show global variables like 'log_slave%';
 ### CREATE REPLICATION ADMIN USER ON PXC MEMBER
 ```
 CREATE USER replicator IDENTIFIED BY 'P@ssw0rd123';
-GRANT REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO bob;
+GRANT REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO replicator;
 ```
 
 ### PERFORM ONLINE BACKUP WITH XTRABACKUP
 ```
 mkdir /tmp/full_backup
 mkdir /tmp/restore (on replica host)
+
 xtrabackup --backup --open-files-limit=256000  --target-dir=/tmp/full_backup/
 xtrabackup --prepare  --target-dir=/tmp/full_backup
 ```
@@ -86,13 +87,13 @@ xtrabackup --prepare  --target-dir=/tmp/full_backup
 ### SCP ONLINE BACKUP FROM PXC TO REPLICA
 ```
 chown -R ec2-user:ec2-user /tmp/full_backup
+
+chown -R ec2-user:ec2-user /tmp/restore/ (on replica host)
 scp -i ~/.ssh/cluster.pem -r full_backup/* ec2-user@pxc3:/tmp/restore/
 ```
 
 ### RESTORE XTRABACKUP
 ```
-chown -R ec2-user:ec2-user /tmp/restore/
-
 systemctl stop mysqld.service
 cp -r /tmp/restore/* /var/lib/mysql/
 chown -R mysql:mysql /var/lib/mysql
